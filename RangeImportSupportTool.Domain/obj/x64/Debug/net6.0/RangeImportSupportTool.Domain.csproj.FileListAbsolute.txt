@@ -1,0 +1,12 @@
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\bin\x64\Debug\net6.0\RangeImportSupportTool.Domain.deps.json
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\bin\x64\Debug\net6.0\RangeImportSupportTool.Domain.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\bin\x64\Debug\net6.0\ref\RangeImportSupportTool.Domain.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\bin\x64\Debug\net6.0\RangeImportSupportTool.Domain.pdb
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\RangeImportSupportTool.Domain.csproj.AssemblyReference.cache
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\RangeImportSupportTool.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\RangeImportSupportTool.Domain.AssemblyInfoInputs.cache
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\RangeImportSupportTool.Domain.AssemblyInfo.cs
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\RangeImportSupportTool.Domain.csproj.CoreCompileInputs.cache
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\RangeImportSupportTool.Domain.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\ref\RangeImportSupportTool.Domain.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.Domain\obj\x64\Debug\net6.0\RangeImportSupportTool.Domain.pdb

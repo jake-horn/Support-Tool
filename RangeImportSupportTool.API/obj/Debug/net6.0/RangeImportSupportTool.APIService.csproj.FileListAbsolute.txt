@@ -1,0 +1,12 @@
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\bin\Debug\net6.0\RangeImportSupportTool.APIService.deps.json
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\bin\Debug\net6.0\RangeImportSupportTool.APIService.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\bin\Debug\net6.0\ref\RangeImportSupportTool.APIService.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\bin\Debug\net6.0\RangeImportSupportTool.APIService.pdb
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\RangeImportSupportTool.APIService.csproj.AssemblyReference.cache
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\RangeImportSupportTool.APIService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\RangeImportSupportTool.APIService.AssemblyInfoInputs.cache
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\RangeImportSupportTool.APIService.AssemblyInfo.cs
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\RangeImportSupportTool.APIService.csproj.CoreCompileInputs.cache
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\RangeImportSupportTool.APIService.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\ref\RangeImportSupportTool.APIService.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.API\obj\Debug\net6.0\RangeImportSupportTool.APIService.pdb

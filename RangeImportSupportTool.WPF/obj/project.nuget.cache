@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "FHzT0uaGfdDK5bP89UbVkoMA60Z9i3U9+rlyRIl079dgE1AJlCZjP2NXf6UsxEnSlxR5/LAsW2HG/4rhq3gg1w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\spawn\\Desktop\\RangeImportSupportTool\\RangeImportSupportTool.WPF\\RangeImportSupportTool.WPF.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\spawn\\.nuget\\packages\\microsoft.extensions.configuration\\6.0.1\\microsoft.extensions.configuration.6.0.1.nupkg.sha512",
+    "C:\\Users\\spawn\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\spawn\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\6.0.0\\microsoft.extensions.dependencyinjection.6.0.0.nupkg.sha512",
+    "C:\\Users\\spawn\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\spawn\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\spawn\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
