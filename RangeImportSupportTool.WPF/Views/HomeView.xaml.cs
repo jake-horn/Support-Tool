@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RangeImportSupportTool.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace RangeImportSupportTool.WPF.Views
         public HomeView()
         {
             InitializeComponent();
+            this.DataContext = new HomeViewModel();
         }
     }
 }

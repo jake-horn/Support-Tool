@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RangeImportSupportTool.WPF.ViewModels;
+﻿using RangeImportSupportTool.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

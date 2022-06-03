@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RangeImportSupportTool.WPF.Views"
+             xmlns:local="clr-namespace:RangeImportSupportTool.WPF.Views" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
@@ -15,10 +15,11 @@
                 HorizontalAlignment="Left" 
                 Padding="1,2,1,1"
                 Margin="10,5,0,0" 
+                Command="{Binding Path=GetRangeImportsCommand}"
          />
 
         <TextBlock Margin="10 5 0 0">Existing Range Imports</TextBlock>
-        <ListView Margin="10 0 10 10" Name="ExistingRangeImports">
+        <ListView Margin="10 0 10 10" Name="ExistingRangeImports" ItemsSource="{Binding RangeImportList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Batch ID" Width="50" DisplayMemberBinding="{Binding BatchId}" />

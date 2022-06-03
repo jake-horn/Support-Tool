@@ -39,3 +39,4 @@ C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.WPF\bin\Deb
 C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.WPF\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.WPF\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.WPF\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\spawn\Desktop\RangeImportSupportTool\RangeImportSupportTool.WPF\bin\Debug\net6.0-windows\RangeImportSupportTool.WPF.dll.config
