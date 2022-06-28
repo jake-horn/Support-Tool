@@ -25,7 +25,7 @@ namespace RangeImportSupportTool.WPF.Commands
 
         public void Execute(object? parameter)
         {
-            HomeViewModel.OnExecute();
+            HomeViewModel.GetRangeImports();
         }
     }
 }

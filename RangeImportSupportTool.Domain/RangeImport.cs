@@ -15,7 +15,6 @@ namespace RangeImportSupportTool.Domain
         public string? BatchName { get; set; }
         public int? BatchId { get; set; }
         public string? DownloadLinkID { get; set; }
-        public string? DownloadName { get; set; }
         public bool MatchedAfterDateRequired { get; set; } = false;
         public string? MatchedAfterDate { get; set; }
         public string UsePreferredSupplier { get; set; } = "No";
