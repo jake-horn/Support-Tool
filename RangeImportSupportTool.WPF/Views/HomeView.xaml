@@ -19,7 +19,43 @@
          />
 
         <TextBlock Margin="10 5 0 0">Existing Range Imports</TextBlock>
-        <ListView Margin="10 0 10 10" Name="ExistingRangeImports" ItemsSource="{Binding RangeImportList}">
+        <ListView Margin="10 0 10 10" Name="ExistingRangeImports" ItemsSource="{Binding ExistingRangeImportList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Batch ID" Width="50" DisplayMemberBinding="{Binding BatchId}" />
+                    <GridViewColumn Header="Batch Name" Width="100" DisplayMemberBinding="{Binding BatchName}" />
+                    <GridViewColumn Header="Target Usage" Width="100" DisplayMemberBinding="{Binding TargetUsage}" />
+                    <GridViewColumn Header="Action" Width="100" DisplayMemberBinding="{Binding Action}" />
+                    <GridViewColumn Header="Retailer Name" Width="100" DisplayMemberBinding="{Binding RetailerName}" />
+                    <GridViewColumn Header="MAD Required?" Width="100" DisplayMemberBinding="{Binding MatchedAfterDateRequired}" />
+                    <GridViewColumn Header="MAD" Width="50" DisplayMemberBinding="{Binding MatchedAfterDate}" />
+                    <GridViewColumn Header="Use Pref. Supplier?" Width="110" DisplayMemberBinding="{Binding UsePreferredSupplier}" />
+                    <GridViewColumn Header="Target Market" Width="80" DisplayMemberBinding="{Binding TargetMarket}" />
+                    <GridViewColumn Header="PurposeId" Width="60" DisplayMemberBinding="{Binding PurposeId}" />
+                    <GridViewColumn Header="New report?" Width="90" DisplayMemberBinding="{Binding IsNewReport}" />
+                    <GridViewColumn Header="TicketID" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="No. Replies" Width="50" DisplayMemberBinding="{Binding NumberOfReplies}" />
+                    <GridViewColumn Width="72">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Download" Padding="2 0" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="70">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Complete" Padding="2 0" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <!-- New Range Imports -->
+        <TextBlock Margin="10 5 0 0">New Range Imports</TextBlock>
+        <ListView Margin="10 0 10 10" Name="NewRangeImports" ItemsSource="{Binding NewRangeImportList}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Batch ID" Width="50" DisplayMemberBinding="{Binding BatchId}" />

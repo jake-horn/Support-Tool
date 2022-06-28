@@ -1,4 +1,5 @@
-﻿using RangeImportSupportTool.Domain;
+﻿using RangeImportSupportTool.APIService.Callers;
+using RangeImportSupportTool.Domain;
 using RangeImportSupportTool.WPF.Commands;
 using System;
 using System.Collections.Generic;
@@ -10,64 +11,51 @@ using System.Threading.Tasks;
 
 namespace RangeImportSupportTool.WPF.ViewModels
 {
-    public class HomeViewModel : ViewModelBase, INotifyPropertyChanged
+    public class HomeViewModel : ViewModelBase
     {
         public GetRangeImportsCommand GetRangeImportsCommand { get; set; }
-        public ObservableCollection<RangeImport> RangeImportList { get; set; } = new ObservableCollection<RangeImport>();
+        public ObservableCollection<RangeImport> ExistingRangeImportList { get; set; } 
+        public ObservableCollection<RangeImport> NewRangeImportList { get; set; } 
 
         public HomeViewModel()
         {
             GetRangeImportsCommand = new GetRangeImportsCommand(this);
         }
 
-        public ObservableCollection<RangeImport> OnExecute()
+        public async Task GetRangeImports()
         {
-            RangeImportList.Add(new RangeImport
+            if (ExistingRangeImportList != null || NewRangeImportList != null)
             {
-                Id = "1234", 
-                TargetUsage = "Digital content",
-                Action = "Overwrite",
-                RetailerName = "Tesco",
-                BatchName = "Main Range",
-                BatchId = 1234,
-                MatchedAfterDateRequired = false,
-                UsePreferredSupplier = "No",
-                TargetMarket = "UK", 
-                IsNewReport = false,
-                NumberOfReplies = 1
-            });
+                ExistingRangeImportList.Clear();
+                NewRangeImportList.Clear();
+            }
 
-            RangeImportList.Add(new RangeImport
-            {
-                Id = "123222",
-                TargetUsage = "Digital content",
-                Action = "Overwrite",
-                RetailerName = "Tesco",
-                BatchName = "Range",
-                BatchId = 1232334,
-                MatchedAfterDateRequired = false,
-                UsePreferredSupplier = "No",
-                TargetMarket = "UK",
-                IsNewReport = false,
-                NumberOfReplies = 1
-            });
+            TicketIdsCaller TicketIds = new();
+            RangeImportApiCaller RangeImports = new();
 
-            RangeImportList.Add(new RangeImport
-            {
-                Id = "1378",
-                TargetUsage = "Digital content",
-                Action = "Overwrite",
-                RetailerName = "Tesco",
-                BatchName = "Main Range",
-                BatchId = 15544234,
-                MatchedAfterDateRequired = false,
-                UsePreferredSupplier = "No",
-                TargetMarket = "UK",
-                IsNewReport = false,
-                NumberOfReplies = 1
-            });
+            ObservableCollection<RangeImport> list = (ObservableCollection<RangeImport>) await TicketIds.GetTicketIds();
+            list = (ObservableCollection<RangeImport>) await RangeImports.ReturnRangeImportModels(list);
 
-            return RangeImportList; 
+            UpdateExistingRangeImportList(list);
+            UpdateNewRangeImportList(list);
+        }
+
+        private void UpdateExistingRangeImportList(IList<RangeImport> rangeImportList)
+        {
+            var filteredList = rangeImportList.Where(x => x.IsNewReport == false);
+
+            ExistingRangeImportList = new ObservableCollection<RangeImport>(filteredList);
+
+            this.OnPropertyChanged(nameof(ExistingRangeImportList));
+        }
+
+        private void UpdateNewRangeImportList(IList<RangeImport> rangeImportList)
+        {
+            var filteredList = rangeImportList.Where(x => x.IsNewReport == true);
+
+            NewRangeImportList = new ObservableCollection<RangeImport>(filteredList);
+
+            this.OnPropertyChanged(nameof(NewRangeImportList));
         }
     }
 }
