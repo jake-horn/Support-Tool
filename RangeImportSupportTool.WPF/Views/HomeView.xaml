@@ -38,7 +38,11 @@
                     <GridViewColumn Width="72">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Download" Padding="2 0" />
+                                <Button Command="{Binding ElementName=ExistingRangeImports,Path=DataContext.GetDownloadCommand}"
+                                        CommandParameter="{Binding}"
+                                        Content="Download" 
+                                        Padding="2 0" 
+                                        />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

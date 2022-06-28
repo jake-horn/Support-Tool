@@ -1,4 +1,5 @@
 ﻿using RangeImportSupportTool.APIService.Callers;
+using RangeImportSupportTool.APIService.Downloaders;
 using RangeImportSupportTool.Domain;
 using RangeImportSupportTool.WPF.Commands;
 using System;
@@ -14,12 +15,14 @@ namespace RangeImportSupportTool.WPF.ViewModels
     public class HomeViewModel : ViewModelBase
     {
         public GetRangeImportsCommand GetRangeImportsCommand { get; set; }
+        public GetDownloadCommand GetDownloadCommand { get; set; }
         public ObservableCollection<RangeImport> ExistingRangeImportList { get; set; } 
         public ObservableCollection<RangeImport> NewRangeImportList { get; set; } 
 
         public HomeViewModel()
         {
             GetRangeImportsCommand = new GetRangeImportsCommand(this);
+            GetDownloadCommand = new GetDownloadCommand(this);
         }
 
         public async Task GetRangeImports()
@@ -56,6 +59,13 @@ namespace RangeImportSupportTool.WPF.ViewModels
             NewRangeImportList = new ObservableCollection<RangeImport>(filteredList);
 
             this.OnPropertyChanged(nameof(NewRangeImportList));
+        }
+
+        public async Task GetDownload(RangeImport rangeImport)
+        {
+            FileDownloader fileDownload = new FileDownloader(rangeImport);
+
+            await fileDownload.GetFile();
         }
     }
 }
