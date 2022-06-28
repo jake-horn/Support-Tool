@@ -26,7 +26,7 @@ namespace RangeImportSupportTool.APIService.Callers
         /// <exception cref="Exception">Throws exception if the response is not a success code</exception>
         public async Task<IList<RangeImport>> GetTicketIds()
         {
-            using (HttpResponseMessage response = await ApiServiceHttpClient.HttpClientReturn().GetAsync(ConfigurationManager.AppSettings.Get("TicketIdAddress")))
+            using (HttpResponseMessage response = await ApiServiceHttpClient.HttpClientReturn().GetAsync(ApiServiceHttpClient.BaseAddress + @"filter?query=""tag: RI AND status: 2"""))
             {
                 if(response.IsSuccessStatusCode)
                 {
