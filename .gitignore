@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 /RangeImportSupportTool.WPF/App.config
+/RangeImportSupportTool.WPF/bin/Debug/
+/RangeImportSupportTool.WPF/obj/
