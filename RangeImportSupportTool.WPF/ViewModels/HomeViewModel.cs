@@ -1,5 +1,6 @@
 ﻿using RangeImportSupportTool.APIService.Callers;
 using RangeImportSupportTool.APIService.Downloaders;
+using RangeImportSupportTool.APIService.Senders;
 using RangeImportSupportTool.Domain;
 using RangeImportSupportTool.WPF.Commands;
 using System;
@@ -43,25 +44,19 @@ namespace RangeImportSupportTool.WPF.ViewModels
             ObservableCollection<RangeImport> list = (ObservableCollection<RangeImport>) await TicketIds.GetTicketIds();
             list = (ObservableCollection<RangeImport>) await RangeImports.ReturnRangeImportModels(list);
 
-            UpdateExistingRangeImportList(list);
-            UpdateNewRangeImportList(list);
+            /*UpdateExistingRangeImportList(list);
+            UpdateNewRangeImportList(list);*/
+
+            UpdateRangeImportLists(list);
+
+
         }
-
-        private void UpdateExistingRangeImportList(IList<RangeImport> rangeImportList)
+        private void UpdateRangeImportLists(IList<RangeImport> rangeImportList)
         {
-            var filteredList = rangeImportList.Where(x => x.IsNewReport == false);
-
-            ExistingRangeImportList = new ObservableCollection<RangeImport>(filteredList);
+            ExistingRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == false));
+            NewRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == true));
 
             this.OnPropertyChanged(nameof(ExistingRangeImportList));
-        }
-
-        private void UpdateNewRangeImportList(IList<RangeImport> rangeImportList)
-        {
-            var filteredList = rangeImportList.Where(x => x.IsNewReport == true);
-
-            NewRangeImportList = new ObservableCollection<RangeImport>(filteredList);
-
             this.OnPropertyChanged(nameof(NewRangeImportList));
         }
 
@@ -79,8 +74,13 @@ namespace RangeImportSupportTool.WPF.ViewModels
 
         #region CompletionTasks
 
-        public void SendCompletionMessage(RangeImport rangeImport)
+        public async Task SendCompletionMessage(RangeImport rangeImport)
         {
+            CompleteMessageSender completeMessageSender = new CompleteMessageSender(rangeImport);
+
+            await completeMessageSender.SendReplyAndCompleteTicket();
+
+
 
         }
 
