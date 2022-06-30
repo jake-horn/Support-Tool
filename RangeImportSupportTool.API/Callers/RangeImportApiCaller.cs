@@ -71,6 +71,7 @@ namespace RangeImportSupportTool.APIService.Callers
                 catch (Exception e)
                 {
                     // Logging/catching to be implemented later
+                    // Need to implement error handling when the downloadlinkid is empty
                 }
             }
 

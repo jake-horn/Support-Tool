@@ -19,6 +19,7 @@ namespace RangeImportSupportTool.WPF.ViewModels
         public GetDownloadCommand GetDownloadCommand { get; set; }
         public CompletedImportCommand CompletedImportCommand { get; set; }
 
+        private ObservableCollection<RangeImport> MasterRangeImportList { get; set; }
         public ObservableCollection<RangeImport> ExistingRangeImportList { get; set; } 
         public ObservableCollection<RangeImport> NewRangeImportList { get; set; } 
 
@@ -41,16 +42,12 @@ namespace RangeImportSupportTool.WPF.ViewModels
             TicketIdsCaller TicketIds = new();
             RangeImportApiCaller RangeImports = new();
 
-            ObservableCollection<RangeImport> list = (ObservableCollection<RangeImport>) await TicketIds.GetTicketIds();
-            list = (ObservableCollection<RangeImport>) await RangeImports.ReturnRangeImportModels(list);
+            MasterRangeImportList = (ObservableCollection<RangeImport>) await TicketIds.GetTicketIds();
+            MasterRangeImportList = (ObservableCollection<RangeImport>) await RangeImports.ReturnRangeImportModels(MasterRangeImportList);
 
-            /*UpdateExistingRangeImportList(list);
-            UpdateNewRangeImportList(list);*/
-
-            UpdateRangeImportLists(list);
-
-
+            UpdateRangeImportLists(MasterRangeImportList);
         }
+
         private void UpdateRangeImportLists(IList<RangeImport> rangeImportList)
         {
             ExistingRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == false));
@@ -76,12 +73,12 @@ namespace RangeImportSupportTool.WPF.ViewModels
 
         public async Task SendCompletionMessage(RangeImport rangeImport)
         {
-            CompleteMessageSender completeMessageSender = new CompleteMessageSender(rangeImport);
+            CompleteMessageSender completeMessageSender = new(rangeImport);
 
             await completeMessageSender.SendReplyAndCompleteTicket();
 
-
-
+            MasterRangeImportList.Remove(rangeImport);
+            UpdateRangeImportLists(MasterRangeImportList);
         }
 
         #endregion

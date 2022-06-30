@@ -38,5 +38,8 @@ namespace RangeImportSupportTool.APIService.Models
 
         [JsonProperty("resolving_team")]
         public string ResolvingTeam { get; set; }
+
+        [JsonProperty("bb_impacted_service")]
+        public string ImpactedService { get; set; }
     }
 }

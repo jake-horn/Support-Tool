@@ -32,15 +32,28 @@ namespace RangeImportSupportTool.APIService.Senders
             }
         }
 
+        public async Task SendReplyAndCompleteTicket()
+        {
+            await SendReply();
+            await UpdateTicketStatus();
+        }
+
+        /// <summary>
+        /// Sends reply through the API to the customer
+        /// </summary>
         private async Task SendReply()
         {
             var replyContent = new StringContent(_replyJson, Encoding.UTF8, "application/json");
 
-            await ApiServiceHttpClient.HttpClientReturn().PutAsync(_replyUrl, replyContent);
+            await ApiServiceHttpClient.HttpClientReturn().PostAsync(_replyUrl, replyContent);
         }
 
+        /// <summary>
+        /// Updates the ticket status and sets to "Resolved"
+        /// </summary>
         private async Task UpdateTicketStatus()
         {
+            // Set up the JSON model for the response
             TicketUpdateJsonModel ticketUpdateJson = new()
             {
                 Status = 4,
@@ -52,13 +65,18 @@ namespace RangeImportSupportTool.APIService.Senders
                     RootCauseReason = "Requests - Completed",
                     Application = "General Task", 
                     ImpactedArea = "Service/Work Request Area",
-                    ResolvingTeam = "Application Support"
+                    ResolvingTeam = "Application Support",
+                    ImpactedService = "Other"
                 }
             };
 
+            // Serialise the JSON model
             var output = JsonConvert.SerializeObject(ticketUpdateJson);
+
+            // Set up the PUT content
             var content = new StringContent(output, Encoding.UTF8, "application/json");
 
+            // Send PUT request
             await ApiServiceHttpClient.HttpClientReturn().PutAsync(_ticketUpdateUrl, content);
         }
     }
