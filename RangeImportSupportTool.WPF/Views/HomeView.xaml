@@ -24,7 +24,13 @@
                 <GridView>
                     <GridViewColumn Header="Batch ID" Width="50" DisplayMemberBinding="{Binding BatchId}" />
                     <GridViewColumn Header="Batch Name" Width="100" DisplayMemberBinding="{Binding BatchName}" />
-                    <GridViewColumn Header="Target Usage" Width="100" DisplayMemberBinding="{Binding TargetUsage}" />
+                    <GridViewColumn Header="Target Usage" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding TargetUsage}" Width="120" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Action" Width="100" DisplayMemberBinding="{Binding Action}" />
                     <GridViewColumn Header="Retailer Name" Width="100" DisplayMemberBinding="{Binding RetailerName}" />
                     <GridViewColumn Header="MAD Required?" Width="100" DisplayMemberBinding="{Binding MatchedAfterDateRequired}" />
@@ -98,6 +104,28 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        
+
+        <!-- New Range Imports -->
+        <TextBlock Margin="10 5 0 0">Manual Check Range Imports - These have more than 2 replies, indicates the user has responded or made a mistake</TextBlock>
+        <ListView Margin="10 0 10 10" Name="ManualCheckRangeImports" ItemsSource="{Binding ManualCheckRangeImportsList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Batch ID" Width="50" DisplayMemberBinding="{Binding BatchId}" />
+                    <GridViewColumn Header="Batch Name" Width="100" DisplayMemberBinding="{Binding BatchName}" />
+                    <GridViewColumn Header="Target Usage" Width="100" DisplayMemberBinding="{Binding TargetUsage}" />
+                    <GridViewColumn Header="Action" Width="100" DisplayMemberBinding="{Binding Action}" />
+                    <GridViewColumn Header="Retailer Name" Width="100" DisplayMemberBinding="{Binding RetailerName}" />
+                    <GridViewColumn Header="MAD Required?" Width="100" DisplayMemberBinding="{Binding MatchedAfterDateRequired}" />
+                    <GridViewColumn Header="MAD" Width="50" DisplayMemberBinding="{Binding MatchedAfterDate}" />
+                    <GridViewColumn Header="Use Pref. Supplier?" Width="110" DisplayMemberBinding="{Binding UsePreferredSupplier}" />
+                    <GridViewColumn Header="Target Market" Width="80" DisplayMemberBinding="{Binding TargetMarket}" />
+                    <GridViewColumn Header="PurposeId" Width="60" DisplayMemberBinding="{Binding PurposeId}" />
+                    <GridViewColumn Header="New report?" Width="90" DisplayMemberBinding="{Binding IsNewReport}" />
+                    <GridViewColumn Header="TicketID" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="No. Replies" Width="50" DisplayMemberBinding="{Binding NumberOfReplies}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </StackPanel>
 </UserControl>

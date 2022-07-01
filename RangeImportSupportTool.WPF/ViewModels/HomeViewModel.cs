@@ -22,6 +22,7 @@ namespace RangeImportSupportTool.WPF.ViewModels
         private ObservableCollection<RangeImport> MasterRangeImportList { get; set; }
         public ObservableCollection<RangeImport> ExistingRangeImportList { get; set; } 
         public ObservableCollection<RangeImport> NewRangeImportList { get; set; } 
+        public ObservableCollection<RangeImport> ManualCheckRangeImportsList { get; set; }
 
         public HomeViewModel()
         {
@@ -37,6 +38,7 @@ namespace RangeImportSupportTool.WPF.ViewModels
             {
                 ExistingRangeImportList.Clear();
                 NewRangeImportList.Clear();
+                ManualCheckRangeImportsList.Clear();
             }
 
             TicketIdsCaller TicketIds = new();
@@ -50,11 +52,13 @@ namespace RangeImportSupportTool.WPF.ViewModels
 
         private void UpdateRangeImportLists(IList<RangeImport> rangeImportList)
         {
-            ExistingRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == false));
-            NewRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == true));
+            ExistingRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == false && x.NumberOfReplies <= 2));
+            NewRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == true && x.NumberOfReplies <= 2));
+            ManualCheckRangeImportsList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.NumberOfReplies > 2));
 
             this.OnPropertyChanged(nameof(ExistingRangeImportList));
             this.OnPropertyChanged(nameof(NewRangeImportList));
+            this.OnPropertyChanged(nameof(ManualCheckRangeImportsList));
         }
 
         #endregion
