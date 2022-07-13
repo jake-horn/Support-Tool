@@ -37,13 +37,13 @@ namespace RangeImportSupportTool.APIService.Callers
                     JObject conversationInfoJsonParse = JObject.Parse(conversationInfoResponseContent);
 
                     // Sets up the list for the TargetUsage to be populated, needs to be tidied up in future
-                    JArray items = (JArray)requestedItemsJsonParse["requested_items"][0]["custom_fields"]["what_is_the_target_usage_of_the_products_in_this_range"];
-                    List<string> text = items.Select(c => (string)c).ToList();
+                    JArray targetUsageJArray = (JArray)requestedItemsJsonParse["requested_items"][0]["custom_fields"]["what_is_the_target_usage_of_the_products_in_this_range"];
+                    List<string> targetUsageList = targetUsageJArray.Select(c => (string)c).ToList();
 
                     RangeImport rangeImportModel = new()
                     {
                         Id = ticket.Id,
-                        TargetUsage = text, 
+                        TargetUsage = targetUsageList, 
                         Action = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.which_tasks_do_you_require.[0]").Value<string>(),
                         RetailerName = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.retailer_name").Value<string>(),
                         BatchName = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.retailer_range_name").Value<string>(),
