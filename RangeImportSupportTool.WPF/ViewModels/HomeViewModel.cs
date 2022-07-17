@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,10 @@ namespace RangeImportSupportTool.WPF.ViewModels
         public ObservableCollection<RangeImport> ExistingRangeImportList { get; set; } 
         public ObservableCollection<RangeImport> NewRangeImportList { get; set; } 
         public ObservableCollection<RangeImport> ManualCheckRangeImportsList { get; set; }
+
+        public Uri TicketLinkUri { get; } = new Uri(ConfigurationManager.AppSettings.Get("LinkUri"));
+
+        public string RangeResponse { get; set; } = String.Empty;
 
         public HomeViewModel()
         {
@@ -48,6 +53,17 @@ namespace RangeImportSupportTool.WPF.ViewModels
             MasterRangeImportList = (ObservableCollection<RangeImport>) await RangeImports.ReturnRangeImportModels(MasterRangeImportList);
 
             UpdateRangeImportLists(MasterRangeImportList);
+
+            if (MasterRangeImportList.Count == 0)
+            {
+                RangeResponse = "No ranges to import.";
+            }
+            else
+            {
+                RangeResponse = String.Empty;
+            }
+
+            this.OnPropertyChanged(nameof(RangeResponse));
         }
 
         private void UpdateRangeImportLists(IList<RangeImport> rangeImportList)

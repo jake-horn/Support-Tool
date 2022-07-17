@@ -17,7 +17,15 @@
                 Margin="10,5,0,0" 
                 Command="{Binding Path=GetRangeImportsCommand}"
          />
-        
+        <TextBlock 
+                Width="200" Height="35" 
+                x:Name="RangeResponse" 
+                Text="{Binding RangeResponse}" 
+                HorizontalAlignment="Left"
+                Padding="1,2,1,1"
+                Margin="10,5,0,0"
+        />
+
         <!-- Existing Range Imports -->
         <TextBlock Margin="10 5 0 0">Existing Range Imports</TextBlock>
         <ListView Margin="10 0 10 10" Name="ExistingRangeImports" ItemsSource="{Binding ExistingRangeImportList}">
