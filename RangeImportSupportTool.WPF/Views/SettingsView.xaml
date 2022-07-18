@@ -7,6 +7,44 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Settings</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="170" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Settings" HorizontalAlignment="Center" />
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="ApiKey" Margin="0,15,0,0" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Save Location" Margin="0,15,0,0" />
+
+        <TextBox Grid.Row="1" 
+                 Grid.Column="2" 
+                 Height="25" 
+                 Padding="2,3,0,0"
+                 Text="{Binding ApiKey}"
+                 />
+        <TextBox Grid.Row="2" 
+                 Grid.Column="2" 
+                 Height="25" 
+                 Padding="2,3,0,0"
+                 Text="{Binding DownloadLocation}"
+                 />
+
+        <Button Grid.Column="2"
+                Grid.Row="3"
+                Content="Save"
+                Width="50"
+                Height="25"
+                />
+
     </Grid>
 </UserControl>
