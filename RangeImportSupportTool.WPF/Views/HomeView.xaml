@@ -7,24 +7,41 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="1000">
     <StackPanel>
-        
-        <!-- Get Imports Button -->
-        <Button Height="35" 
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="135"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            
+            <!-- Get Imports Button -->
+            <Button Grid.Column="0"
+                Grid.Row="0"
+                Height="35" 
                 Width="120" 
                 Content="Get Range Imports" 
                 HorizontalAlignment="Left" 
                 Padding="1,2,1,1"
-                Margin="10,5,0,0" 
+                Margin="10,5,0,0"
                 Command="{Binding Path=GetRangeImportsCommand}"
-         />
-        <TextBlock 
+            />
+            
+            <TextBlock
+                Grid.Column="1"
+                Grid.Row="0"
                 Width="200" Height="35" 
                 x:Name="RangeResponse" 
                 Text="{Binding RangeResponse}" 
                 HorizontalAlignment="Left"
                 Padding="1,2,1,1"
-                Margin="10,5,0,0"
-        />
+                Margin="2,20,0,0"
+            />
+        </Grid>
+        
+
 
         <!-- Existing Range Imports -->
         <TextBlock Margin="10 5 0 0">Existing Range Imports</TextBlock>

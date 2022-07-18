@@ -6,27 +6,25 @@ using RangeImportSupportTool.WPF.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Configuration;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RangeImportSupportTool.WPF.ViewModels
 {
     public class HomeViewModel : ViewModelBase
     {
+        // Commands
         public GetRangeImportsCommand GetRangeImportsCommand { get; set; }
         public GetDownloadCommand GetDownloadCommand { get; set; }
         public CompletedImportCommand CompletedImportCommand { get; set; }
 
+        // Collections
         private ObservableCollection<RangeImport> MasterRangeImportList { get; set; }
         public ObservableCollection<RangeImport> ExistingRangeImportList { get; set; } 
         public ObservableCollection<RangeImport> NewRangeImportList { get; set; } 
         public ObservableCollection<RangeImport> ManualCheckRangeImportsList { get; set; }
 
-        public Uri TicketLinkUri { get; } = new Uri(ConfigurationManager.AppSettings.Get("LinkUri"));
-
+        // Misc.
         public string RangeResponse { get; set; } = String.Empty;
 
         public HomeViewModel()
@@ -37,14 +35,13 @@ namespace RangeImportSupportTool.WPF.ViewModels
         }
 
         #region RangeImports
+        /// <summary>
+        /// Primary method used for calling and populating the range import lists. 
+        /// </summary>
         public async Task GetRangeImports()
         {
-            if (ExistingRangeImportList != null || NewRangeImportList != null)
-            {
-                ExistingRangeImportList.Clear();
-                NewRangeImportList.Clear();
-                ManualCheckRangeImportsList.Clear();
-            }
+            // Clears the Master list if it isn't null so the lists are repopulated if required. 
+            MasterRangeImportList?.Clear();
 
             TicketIdsCaller TicketIds = new();
             RangeImportApiCaller RangeImports = new();
@@ -54,6 +51,7 @@ namespace RangeImportSupportTool.WPF.ViewModels
 
             UpdateRangeImportLists(MasterRangeImportList);
 
+            // To update the text on application if there are no imports to complete. 
             if (MasterRangeImportList.Count == 0)
             {
                 RangeResponse = "No ranges to import.";
@@ -66,6 +64,10 @@ namespace RangeImportSupportTool.WPF.ViewModels
             this.OnPropertyChanged(nameof(RangeResponse));
         }
 
+        /// <summary>
+        /// Filters and updates the lists for the View to display correctly. 
+        /// </summary>
+        /// <param name="rangeImportList"></param>
         private void UpdateRangeImportLists(IList<RangeImport> rangeImportList)
         {
             ExistingRangeImportList = new ObservableCollection<RangeImport>(rangeImportList.Where(x => x.IsNewReport == false && x.NumberOfReplies <= 2));
@@ -80,6 +82,12 @@ namespace RangeImportSupportTool.WPF.ViewModels
         #endregion
 
         #region Downloads
+
+        /// <summary>
+        /// Downloads the file when the "Download" button is clicked. 
+        /// </summary>
+        /// <param name="rangeImport"></param>
+        /// <returns></returns>
         public async Task GetDownload(RangeImport rangeImport)
         {
             FileDownloader fileDownload = new FileDownloader(rangeImport);
@@ -91,6 +99,11 @@ namespace RangeImportSupportTool.WPF.ViewModels
 
         #region CompletionTasks
 
+        /// <summary>
+        /// Sends the completion message and completes the ticket, then removing the RangeImport from the MasterRangeImportList and updates the lists. 
+        /// </summary>
+        /// <param name="rangeImport"></param>
+        /// <returns></returns>
         public async Task SendCompletionMessage(RangeImport rangeImport)
         {
             CompleteMessageSender completeMessageSender = new(rangeImport);
