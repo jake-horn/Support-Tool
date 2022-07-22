@@ -25,7 +25,7 @@ namespace RangeImportSupportTool.WPF.Commands
 
         public void Execute(object? parameter)
         {
-            SettingsViewModel.SaveSettings();
+            SettingsViewModel.SaveSettings(SettingsViewModel);
         }
     }
 }
