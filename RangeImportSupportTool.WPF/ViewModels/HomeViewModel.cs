@@ -47,7 +47,7 @@ namespace RangeImportSupportTool.WPF.ViewModels
             RangeImportApiCaller RangeImports = new();
 
             MasterRangeImportList = (ObservableCollection<RangeImport>) await TicketIds.GetTicketIds();
-            MasterRangeImportList = (ObservableCollection<RangeImport>) await RangeImports.ReturnRangeImportModels(MasterRangeImportList);
+            await RangeImports.ReturnRangeImportModels(MasterRangeImportList);
 
             UpdateRangeImportLists(MasterRangeImportList);
 
