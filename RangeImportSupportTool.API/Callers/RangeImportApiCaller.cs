@@ -43,7 +43,7 @@ namespace RangeImportSupportTool.APIService.Callers
                     RangeImport rangeImportModel = new()
                     {
                         Id = ticket.Id,
-                        TargetUsage = targetUsageList, 
+                        TargetUsage = targetUsageList,
                         Action = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.which_tasks_do_you_require.[0]").Value<string>(),
                         RetailerName = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.retailer_name").Value<string>(),
                         BatchName = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.retailer_range_name").Value<string>(),
@@ -52,7 +52,8 @@ namespace RangeImportSupportTool.APIService.Callers
                         TargetMarket = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.which_target_market_is_this_for").Value<string>(),
                         UsePreferredSupplier = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.use_preferred_supplier_matching").Value<string>(),
                         PurposeId = requestedItemsJsonParse.SelectToken("requested_items.[0].custom_fields.purpose_id_if_required").Value<string>(),
-                        NumberOfReplies = conversationInfoJsonParse.SelectToken("meta.count").Value<int>()
+                        NumberOfReplies = conversationInfoJsonParse.SelectToken("meta.count").Value<int>(),
+                        RequesterEmail = conversationInfoJsonParse.SelectToken("conversations.[0].to_emails.[0]").Value<string>()
                     };
 
                     // Check if the range import is a new batch or not

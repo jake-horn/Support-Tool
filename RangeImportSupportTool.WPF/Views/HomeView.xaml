@@ -115,9 +115,8 @@
                     <GridViewColumn Header="Use Pref. Supplier?" Width="110" DisplayMemberBinding="{Binding UsePreferredSupplier}" />
                     <GridViewColumn Header="Target Market" Width="100" DisplayMemberBinding="{Binding TargetMarket}" />
                     <GridViewColumn Header="PurposeId" Width="60" DisplayMemberBinding="{Binding PurposeId}" />
-                    <GridViewColumn Header="New report?" Width="90" DisplayMemberBinding="{Binding IsNewReport}" />
                     <GridViewColumn Header="TicketID" Width="50" DisplayMemberBinding="{Binding Id}" />
-                    <GridViewColumn Header="No. Replies" Width="50" DisplayMemberBinding="{Binding NumberOfReplies}" />
+                    <GridViewColumn Header="Email" Width="100" DisplayMemberBinding="{Binding RequesterEmail}" />
                     <GridViewColumn Header="BatchID" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
