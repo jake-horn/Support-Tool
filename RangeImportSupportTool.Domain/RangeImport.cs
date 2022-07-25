@@ -36,5 +36,7 @@ namespace RangeImportSupportTool.Domain
         public bool IsNewReport { get; set; } = false;
 
         public int? NumberOfReplies { get; set; }
+
+        public string RequesterEmail { get; set; }
     }
 }
