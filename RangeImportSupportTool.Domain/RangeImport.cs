@@ -21,7 +21,7 @@ namespace RangeImportSupportTool.Domain
 
         public int? BatchId { get; set; }
 
-        public string? DownloadLinkID { get; set; }
+        public List<string>? DownloadLinkID { get; set; } = new List<string>();
 
         public bool MatchedAfterDateRequired { get; set; } = false;
 
@@ -37,6 +37,6 @@ namespace RangeImportSupportTool.Domain
 
         public int? NumberOfReplies { get; set; }
 
-        public string RequesterEmail { get; set; }
+        public string? RequesterEmail { get; set; }
     }
 }

@@ -17,14 +17,17 @@ namespace RangeImportSupportTool.APIService.Downloaders
             _rangeImport = rangeImport;
         }
 
-        public async Task GetFile()
+        public async Task GetFiles()
         {
-            using (FileStream fileStream = File.Create(ConfigurationManager.AppSettings.Get("RangeImportFolderLocation") + $"{_rangeImport.BatchId}.xlsx"))
+            for(int i = 0; i < _rangeImport.DownloadLinkID.Count; i++)
             {
-                var request = await ApiServiceHttpClient.HttpClientReturn().GetAsync(_rangeImport.DownloadLinkID);
-                var response = await request.Content.ReadAsStreamAsync();
+                using (FileStream fileStream = File.Create(ConfigurationManager.AppSettings.Get("RangeImportFolderLocation") + $"{_rangeImport.BatchId}" + $"({i})" + ".xlsx"))
+                {
+                    var request = await ApiServiceHttpClient.HttpClientReturn().GetAsync(_rangeImport.DownloadLinkID[i]);
+                    var response = await request.Content.ReadAsStreamAsync();
 
-                await response.CopyToAsync(fileStream);
+                    await response.CopyToAsync(fileStream);
+                }
             }
         }
     }

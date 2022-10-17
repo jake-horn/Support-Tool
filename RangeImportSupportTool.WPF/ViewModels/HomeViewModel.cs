@@ -34,7 +34,6 @@ namespace RangeImportSupportTool.WPF.ViewModels
             CompletedImportCommand = new CompletedImportCommand(this);
         }
 
-        #region RangeImports
         /// <summary>
         /// Primary method used for calling and populating the range import lists. 
         /// </summary>
@@ -58,7 +57,7 @@ namespace RangeImportSupportTool.WPF.ViewModels
             }
             else
             {
-                RangeResponse = String.Empty;
+                RangeResponse = "Range import tickets imported.";
             }
 
             this.OnPropertyChanged(nameof(RangeResponse));
@@ -79,10 +78,6 @@ namespace RangeImportSupportTool.WPF.ViewModels
             this.OnPropertyChanged(nameof(ManualCheckRangeImportsList));
         }
 
-        #endregion
-
-        #region Downloads
-
         /// <summary>
         /// Downloads the file when the "Download" button is clicked. 
         /// </summary>
@@ -92,12 +87,8 @@ namespace RangeImportSupportTool.WPF.ViewModels
         {
             FileDownloader fileDownload = new FileDownloader(rangeImport);
 
-            await fileDownload.GetFile();
+            await fileDownload.GetFiles();
         }
-
-        #endregion
-
-        #region CompletionTasks
 
         /// <summary>
         /// Sends the completion message and completes the ticket, then removing the RangeImport from the MasterRangeImportList and updates the lists. 
@@ -113,7 +104,5 @@ namespace RangeImportSupportTool.WPF.ViewModels
             MasterRangeImportList.Remove(rangeImport);
             UpdateRangeImportLists(MasterRangeImportList);
         }
-
-        #endregion
     }
 }
