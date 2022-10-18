@@ -10,20 +10,18 @@ namespace RangeImportSupportTool.APIService.Downloaders
 {
     public class FileDownloader
     {
-        private RangeImport _rangeImport;
-
-        public FileDownloader(RangeImport rangeImport)
+        public FileDownloader()
         {
-            _rangeImport = rangeImport;
+            
         }
 
-        public async Task GetFiles()
+        public async Task GetFiles(RangeImport rangeImport)
         {
-            for(int i = 0; i < _rangeImport.DownloadLinkID.Count; i++)
+            for(int i = 0; i < rangeImport.DownloadLinkID.Count; i++)
             {
-                using (FileStream fileStream = File.Create(ConfigurationManager.AppSettings.Get("RangeImportFolderLocation") + $"{_rangeImport.BatchId}" + $"({i})" + ".xlsx"))
+                using (FileStream fileStream = File.Create(ConfigurationManager.AppSettings.Get("RangeImportFolderLocation") + $"{rangeImport.BatchId}" + $"({i})" + ".xlsx"))
                 {
-                    var request = await ApiServiceHttpClient.HttpClientReturn().GetAsync(_rangeImport.DownloadLinkID[i]);
+                    var request = await ApiServiceHttpClient.HttpClientReturn().GetAsync(rangeImport.DownloadLinkID[i]);
                     var response = await request.Content.ReadAsStreamAsync();
 
                     await response.CopyToAsync(fileStream);

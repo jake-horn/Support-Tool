@@ -3,6 +3,7 @@ using RangeImportSupportTool.APIService.Downloaders;
 using RangeImportSupportTool.APIService.Senders;
 using RangeImportSupportTool.Domain;
 using RangeImportSupportTool.WPF.Commands;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,6 +28,10 @@ namespace RangeImportSupportTool.WPF.ViewModels
         // Misc.
         public string RangeResponse { get; set; } = String.Empty;
 
+        private readonly TicketIdsCaller _ticketIdsCaller = new TicketIdsCaller();
+        private readonly RangeImportApiCaller _rangeImportApiCaller = new RangeImportApiCaller();
+        private readonly FileDownloader _fileDownloader = new FileDownloader();
+
         public HomeViewModel()
         {
             GetRangeImportsCommand = new GetRangeImportsCommand(this);
@@ -42,11 +47,8 @@ namespace RangeImportSupportTool.WPF.ViewModels
             // Clears the Master list if it isn't null so the lists are repopulated if required. 
             MasterRangeImportList?.Clear();
 
-            TicketIdsCaller TicketIds = new();
-            RangeImportApiCaller RangeImports = new();
-
-            MasterRangeImportList = (ObservableCollection<RangeImport>) await TicketIds.GetTicketIds();
-            await RangeImports.ReturnRangeImportModels(MasterRangeImportList);
+            MasterRangeImportList = (ObservableCollection<RangeImport>) await _ticketIdsCaller.GetTicketIds();
+            await _rangeImportApiCaller.ReturnRangeImportModels(MasterRangeImportList);
 
             UpdateRangeImportLists(MasterRangeImportList);
 
@@ -85,9 +87,7 @@ namespace RangeImportSupportTool.WPF.ViewModels
         /// <returns></returns>
         public async Task GetDownload(RangeImport rangeImport)
         {
-            FileDownloader fileDownload = new FileDownloader(rangeImport);
-
-            await fileDownload.GetFiles();
+            await _fileDownloader.GetFiles(rangeImport);
         }
 
         /// <summary>
