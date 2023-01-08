@@ -1,11 +1,15 @@
 ﻿using Newtonsoft.Json.Linq;
 using RangeImportSupportTool.Domain;
+using Serilog;
 
 namespace RangeImportSupportTool.APIService.Callers
 {
     public class RangeImportApiCaller
     {
-        public RangeImportApiCaller() { }
+
+        public RangeImportApiCaller()
+        {
+        }
 
         public async Task ReturnRangeImportModels(IList<RangeImport> rangeImportList)
         {
@@ -62,18 +66,15 @@ namespace RangeImportSupportTool.APIService.Callers
                 if (rangeImport.MatchedAfterDate != null)
                     rangeImport.MatchedAfterDateRequired = true;
 
-                // A temporary measure to ensure that tickets without a file uploaded are not completely ignored by the application
-                // The NumberOfReplies set to 5 will move it to the "Manual Checks" section of the application, and the download is unavailable there
-                // Leading to no download being able to be completed, and the user can manually check for the issue
+                // If there are no downloads, then the ticket needs to be checked as no file has been provided. 
                 if (rangeImport.DownloadLinkID.Count == 0)
                 {
-                    rangeImport.NumberOfReplies = 5;
+                    Log.Information($"BatchID {rangeImport.BatchId} has no file attached, manually check the ticket.");
                 }
             }
             catch (Exception e)
             {
-                // Logging/catching to be implemented later
-                // Need to implement error handling when the downloadlinkid is empty
+                Log.Error($"BatchID: {rangeImport.BatchId}. Exception: {e}");
             }
         }
 

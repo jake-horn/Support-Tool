@@ -1,18 +1,14 @@
 ﻿using Newtonsoft.Json.Linq;
 using RangeImportSupportTool.Domain;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog; 
 
 namespace RangeImportSupportTool.APIService.Callers
 {
     public class TicketIdsCaller
     {
         private IList<RangeImport> _rangeImportList { get; set; }
+        private readonly string _baseAddressAppend = @"filter?query=""tag: RI AND status: 2""";
 
         public TicketIdsCaller()
         {
@@ -26,32 +22,34 @@ namespace RangeImportSupportTool.APIService.Callers
         /// <exception cref="Exception">Throws exception if the response is not a success code</exception>
         public async Task<IList<RangeImport>> GetTicketIds()
         {
-            using (HttpResponseMessage response = await ApiServiceHttpClient.HttpClientReturn().GetAsync(ApiServiceHttpClient.BaseAddress + @"filter?query=""tag: RI AND status: 2"""))
+            using HttpResponseMessage response = await ApiServiceHttpClient.HttpClientReturn().GetAsync(ApiServiceHttpClient.BaseAddress + _baseAddressAppend);
+
+            if (response.IsSuccessStatusCode)
             {
-                if(response.IsSuccessStatusCode)
+                JObject parseJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+
+                IList<JToken> results = parseJson["tickets"].Children().ToList();
+
+                foreach (JToken item in results)
                 {
-                    // Converts the response into a string
-                    string responseString = await response.Content.ReadAsStringAsync();
-
-                    // Converts the response to a JSON object
-                    JObject parseJson = JObject.Parse(responseString);
-
-                    // Adds each ticket to a JToken list
-                    List<JToken> results = parseJson["tickets"].Children().ToList();
-
-                    // Creates a RangeImport model for each item in the results list and adds to the _rangeImportList
-                    foreach (JToken item in results)
+                    try
                     {
                         RangeImport rangeImport = item.ToObject<RangeImport>();
                         _rangeImportList.Add(rangeImport);
                     }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"Error: {ex}");
+                    }
 
-                    return _rangeImportList;
                 }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
+
+                return _rangeImportList;
+            }
+            else
+            {
+                Log.Error($"Exception: {response.ReasonPhrase}");
+                throw new Exception(response.ReasonPhrase);
             }
         }
     }
