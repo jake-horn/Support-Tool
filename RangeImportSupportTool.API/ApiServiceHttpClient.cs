@@ -9,8 +9,8 @@ namespace RangeImportSupportTool.APIService
 {
     public static class ApiServiceHttpClient
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
-        public static Uri BaseAddress { get; } = new Uri(ConfigurationManager.AppSettings.Get("BaseUri"));
+        private static readonly HttpClient _httpClient = new();
+        public static Uri BaseAddress { get; } = new(ConfigurationManager.AppSettings.Get("BaseUri"));
 
         public static HttpClient HttpClientReturn()
         {

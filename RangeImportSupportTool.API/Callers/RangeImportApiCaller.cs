@@ -6,7 +6,10 @@ namespace RangeImportSupportTool.APIService.Callers
 {
     public class RangeImportApiCaller
     {
-        public RangeImportApiCaller() { }
+
+        public RangeImportApiCaller()
+        {
+        }
 
         public async Task ReturnRangeImportModels(IList<RangeImport> rangeImportList)
         {
