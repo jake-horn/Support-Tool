@@ -27,7 +27,7 @@ namespace RangeImportSupportTool.Domain
 
         public string? MatchedAfterDate { get; set; }
 
-        public string UsePreferredSupplier { get; set; } = "No";
+        public string? UsePreferredSupplier { get; set; } 
 
         public string? TargetMarket { get; set; }
 

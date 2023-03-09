@@ -71,6 +71,11 @@ namespace RangeImportSupportTool.APIService.Callers
                 {
                     Log.Information($"BatchID {rangeImport.BatchId} has no file attached, manually check the ticket.");
                 }
+
+                if (rangeImport.UsePreferredSupplier is null)
+                {
+                    rangeImport.UsePreferredSupplier = "No"; 
+                }
             }
             catch (Exception e)
             {
