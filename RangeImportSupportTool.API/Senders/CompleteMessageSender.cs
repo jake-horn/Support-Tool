@@ -59,14 +59,18 @@ namespace RangeImportSupportTool.APIService.Senders
                 Status = 4,
                 Priority = 1,
                 Tags = new[] { "RI", "Tasks" },
-                Description = ".", 
+                Description = ".",
+                DepartmentId = 27000088041,
                 CustomFields = new CustomFields
                 {
                     RootCauseReason = "Requests - Completed",
-                    Application = "General Task", 
+                    Application = "General Task",
                     ImpactedArea = "Service/Work Request Area",
                     ResolvingTeam = "Application Support",
-                    ImpactedService = "Other"
+                    ImpactedService = "Other",
+                    UsersImpacted = 1,
+                    OtherIssue = "N/A",
+                    CountryImpacted = new string[] {_rangeImport.TargetMarket}, 
                 }
             };
 

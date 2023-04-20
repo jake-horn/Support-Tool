@@ -23,6 +23,9 @@ namespace RangeImportSupportTool.APIService.Models
 
         [JsonProperty("custom_fields")]
         public CustomFields CustomFields { get; set; }
+
+        [JsonProperty("department_id")]
+        public long DepartmentId { get; set; }
     }
 
     public partial class CustomFields
@@ -41,5 +44,14 @@ namespace RangeImportSupportTool.APIService.Models
 
         [JsonProperty("bb_impacted_service")]
         public string ImpactedService { get; set; }
+
+        [JsonProperty("users_impacted")]
+        public int UsersImpacted { get; set; }
+
+        [JsonProperty("oiher_issue")]
+        public string OtherIssue { get; set; }
+
+        [JsonProperty("msf_country_or_countries_impacted")]
+        public string[] CountryImpacted { get; set; }
     }
 }
